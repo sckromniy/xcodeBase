@@ -13,6 +13,10 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var summaLbl: UILabel!
+  
+    @IBOutlet weak var npercent: UITextField!
+    
+    @IBOutlet weak var value: UITextField!
     
     @IBOutlet weak var sum: UITextField!
     @IBOutlet weak var years: UITextField!
@@ -27,6 +31,21 @@ class ViewController: UIViewController {
     @IBAction func pressButton(_ sender: UIButton) {
         calcMoney(sum: sum.text, years: years.text)
     }
+    
+    @IBAction func pressCalcPercent(_ sender: Any) {
+        calcPercent(n: npercent.text, val: value.text)
+    }
+    // MARK: CALC PERCENT
+    
+    func calcPercent(n: String?, val: String?) {
+        guard let nT = n, let valT = val, let nI = Int(nT), let valD = Double(valT) else {
+            return
+        }
+        summaLbl.text = "\(Double(nI) * valD / 100)"
+    }
+
+    
+    
     
     // MARK: CALC MONEY
     func calcMoney(sum: String?, years: String?) {
