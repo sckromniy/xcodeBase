@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         calcMoney(sum: sum.text, years: years.text)
     }
     
-    
+    // MARK: CALC MONEY
     func calcMoney(sum: String?, years: String?) {
         guard let sumT = sum, let yearsT = years, let sumI = Int(sumT), let yearsI = Int(yearsT) else {
             return
