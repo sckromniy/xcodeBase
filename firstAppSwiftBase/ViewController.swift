@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        testClosureSP()
+        testClosureNumbers()
     }
 
     @IBAction func pressButton(_ sender: UIButton) {
@@ -107,16 +107,23 @@ class ViewController: UIViewController {
             num1.isMultiple(of: num2)
         }
         let checkDiv: (Int, Int) -> Bool = { num1, num2 in
-            for i in 2...min(num1,num2) - 1 {
-            if num1
+            for i in 2...(min(num1,num2) - 1) {
+                if num1.isMultiple(of: i) && num2.isMultiple(of: i) {
+                    return true
+                }
             }
+            return false
+        }
+        let checkEven: (Int, Int) -> Bool = { num1, num2 in
+            (num1 + num2).isMultiple(of: 2)
         }
         
-        testClosure3(size: size, closure: checkMod )
-        testClosure3(size: size, closure: checkDiv )
-    
+        let nums = (20, 10)
+        testClosure3(numbers: nums, closure: checkMod)
+        testClosure3(numbers: nums , closure: checkDiv)
+        testClosure3(numbers: nums , closure: checkEven)
     }
-    func testClosure3(numbers: (Double, Double), closure: (Double, Double) -> Bool) {
+    func testClosure3(numbers: (Int, Int), closure: (Int, Int) -> Bool) {
         //3. Реализовать три замыкания, которые принимают два числа и возвращают Bool. Первое вычисляет, может ли первое число быть нацело поделено на второе. Второе вычисляет, имеют ли они хотя бы один общий делитель, отличный от 1 и самих этих чисел. Третье вычисляет, чётная ли сумма этих двух чисел. Реализуйте функцию, которая принимает два числа и такого типа замыкание, внутри себя реализует его и возвращает результат в виде будимого значения
 
         print(numbers, closure(numbers.0, numbers.1))
